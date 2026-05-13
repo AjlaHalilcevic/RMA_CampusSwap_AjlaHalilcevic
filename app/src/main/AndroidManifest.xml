@@ -15,6 +15,9 @@
             android:name=".views.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".views.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.SplashActivity"
             android:exported="true">
             <intent-filter>
