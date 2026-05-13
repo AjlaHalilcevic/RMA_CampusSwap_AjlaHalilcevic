@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849844982664",
+    "project_id": "campusswap-ipi-ajla",
+    "storage_bucket": "campusswap-ipi-ajla.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849844982664:android:7e5a09e042e62faba0e03d",
+        "android_client_info": {
+          "package_name": "com.ajla.campusswap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3w1fnFFkl0foNvahsaXik4bR3rdcbwbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
