@@ -28,7 +28,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Item item = itemList.get(position);
         holder.title.setText(item.getTitle());
         holder.price.setText(item.getPrice());
-        holder.image.setImageResource(android.R.drawable.ic_menu_gallery);
+        com.bumptech.glide.Glide.with(holder.itemView.getContext()).load(item.getImageUrl()).placeholder(android.R.drawable.ic_menu_gallery)
+                        .error(android.R.drawable.stat_notify_error).into(holder.image);
     }
     @Override
     public int getItemCount() {
@@ -43,5 +44,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             price = itemView.findViewById(R.id.itemPrice);
             image = itemView.findViewById(R.id.itemImage);
         }
+    }
+    public void updateList(java.util.List<com.ajla.campusswap.models.Item>newList) {
+        this.itemList = newList;
+        notifyDataSetChanged();
     }
 }
