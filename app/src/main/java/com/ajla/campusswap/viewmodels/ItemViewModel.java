@@ -15,4 +15,8 @@ public class ItemViewModel extends ViewModel {
     }
     public  LiveData<List<Item>>getItemsLiveData() { return itemsLiveData; }
 
+    public void addItem(Item item) {
+        repository.addItem(item);
+    }
+
 }

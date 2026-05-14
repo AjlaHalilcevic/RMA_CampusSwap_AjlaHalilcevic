@@ -28,4 +28,8 @@ public class ItemRepository {
         });
         return itemsLiveData;
     }
+
+    public void addItem(Item item) {
+        db.collection("items").add(item);
+    }
 }

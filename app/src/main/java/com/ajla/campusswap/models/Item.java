@@ -8,6 +8,9 @@ public class Item {
     private String imageUrl;
     private String ownerId;
 
+    public Item() {
+
+    }
     public Item(String id, String title, String description, String price, String imageUrl, String ownerId) {
         this.id = id;
         this.title = title;

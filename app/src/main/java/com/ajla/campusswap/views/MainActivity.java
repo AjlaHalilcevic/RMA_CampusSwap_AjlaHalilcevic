@@ -31,5 +31,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        com.google.android.material.floatingactionbutton.FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(v -> {
+            android.content.Intent intent = new android.content.Intent(MainActivity.this, AddItemActivity.class);
+            startActivity(intent);
+        });
     }
 }
