@@ -1,9 +1,11 @@
 package com.ajla.campusswap.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
@@ -17,7 +19,7 @@ import com.ajla.campusswap.viewmodels.ItemViewModel;
 import com.ajla.campusswap.models.Item;
 import com.ajla.campusswap.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.searchView);
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fabAdd.setOnClickListener(v -> {
-            android.content.Intent intent = new android.content.Intent(MainActivity.this, AddItemActivity.class);
+            Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
             startActivity(intent);
         });
 
@@ -53,7 +57,26 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        itemViewModel = new androidx.lifecycle.ViewModelProvider(this).get(ItemViewModel.class);
+
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                CharSequence title = item.getTitle();
+                if (title != null) {
+                    String itemTitle = title.toString().toLowerCase();
+                    if (itemTitle.equals("home")) {
+                        return true;
+                    } else if (itemTitle.equals("profile")) {
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        itemViewModel = new ViewModelProvider(this).get(ItemViewModel.class);
         itemViewModel.getItemsLiveData().observe(this, items -> {
             if (items != null) {
                 fullItemList = items;
@@ -66,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void filter(String text) {
-        java.util.List<com.ajla.campusswap.models.Item>filteredList = new java.util.ArrayList<>();
+        List<Item>filteredList = new ArrayList<>();
         if (text.isEmpty()) {
             filteredList.addAll(fullItemList);
         } else {
-            for (com.ajla.campusswap.models.Item item : fullItemList) {
+            for (Item item : fullItemList) {
                 if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
                     filteredList.add(item);
                 }
